@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import "regenerator-runtime/runtime";
 
 import { Button } from "@/components/ui/button";
@@ -34,7 +35,6 @@ export default function Home() {
       try {
         window.speechSynthesis.onvoiceschanged = () => {
           const data = populateVoiceList();
-          console.log(data);
           setVoiceList(data);
         };
       } catch (err) {
@@ -167,7 +167,12 @@ export default function Home() {
               </div>
               <div className="mb-12">
                 <div className="border rounded-lg px-3 py-2 sm:p-6">
-                  {evaluation}
+                  {evaluation.split("\n").map((line, index) => (
+                    <React.Fragment key={index}>
+                      {line}
+                      <br />
+                    </React.Fragment>
+                  ))}
                 </div>
               </div>
             </div>

@@ -54,6 +54,8 @@ const appendSpreadsheet = async (row, range) => {
 
 const saveData = async (payload) => {
   const { question, answer, time_taken, usage } = payload;
+  console.log("payload to save");
+  console.log(payload);
   if (question && answer) {
     let new_row = [];
     new_row.push(question);
@@ -65,6 +67,8 @@ const saveData = async (payload) => {
 
     let range = "AIRequest!A2:E";
     const response = await appendSpreadsheet(new_row, range);
+    console.log("response");
+    console.log(response);
     return response;
   } else {
     return {
