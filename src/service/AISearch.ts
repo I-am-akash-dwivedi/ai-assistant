@@ -25,14 +25,19 @@ export default async function answerQuestion(question: string) {
     const chatCompletion: OpenAI.Chat.ChatCompletion = await openai.chat.completions.create(params);
     const endTime = new Date().getTime();
     const answer = chatCompletion.choices[0].message.content;
-    const response = {
+    let response = {
         question: question,
         answer: answer,
         time_taken: (endTime - startTime) / 1000,
         usage: chatCompletion.usage,
+        save_res: null,
+        save_time_taken: 0,
     };
-
-    saveData(response);
+    const start_time_save = new Date().getTime();
+    const save_res = await saveData(response);
+    const end_time_save = new Date().getTime();
+    response['save_res'] = save_res;
+    response['save_time_taken'] = (end_time_save - start_time_save) / 1000;
 
     return response;
 }

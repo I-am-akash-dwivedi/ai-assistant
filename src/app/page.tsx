@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
+import "@/app/style.css";
+import ReactMarkdown from "react-markdown";
 import "regenerator-runtime/runtime";
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import answerQuestion from "@/service/AISearch";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -167,10 +168,11 @@ export default function Home() {
               </div>
               <div className="mb-12">
                 <div className="border rounded-lg px-3 py-2 sm:p-6">
+                  {/* <ReactMarkdown children={evaluation} /> */}
                   {evaluation.split("\n").map((line, index) => (
                     <React.Fragment key={index}>
-                      {line}
-                      <br />
+                      <ReactMarkdown children={line} />
+                      {/* <br /> */}
                     </React.Fragment>
                   ))}
                 </div>

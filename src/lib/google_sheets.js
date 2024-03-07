@@ -39,14 +39,13 @@ const appendSpreadsheet = async (row, range) => {
       resolve({
         message: "Data saved successfully",
         status: "success",
-        data: row,
       });
     } catch (e) {
       console.log(e);
       resolve({
         message: "Error: Data not saved",
         status: "error",
-        data: row,
+        error: e,
       });
     }
   });
