@@ -7,7 +7,7 @@ import "regenerator-runtime/runtime";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import answerQuestion from "@/service/AISearch";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -95,6 +95,7 @@ export default function Home() {
     const res = await answerQuestion(question);
     console.log(res);
     const response = res.answer || "";
+    // const formattedResponse = response.replace(/\n/g, "<br />");
     setEvaluation(response);
     setEvaluationDone(true);
     setLoading(false);
@@ -168,13 +169,12 @@ export default function Home() {
               </div>
               <div className="mb-12">
                 <div className="border rounded-lg px-3 py-2 sm:p-6">
-                  {/* <ReactMarkdown children={evaluation} /> */}
-                  {evaluation.split("\n").map((line, index) => (
+                  <ReactMarkdown children={evaluation} />
+                  {/* {evaluation.split("\n").map((line, index) => (
                     <React.Fragment key={index}>
                       <ReactMarkdown children={line} />
-                      {/* <br /> */}
                     </React.Fragment>
-                  ))}
+                  ))} */}
                 </div>
               </div>
             </div>

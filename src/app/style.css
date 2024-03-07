@@ -1,4 +1,8 @@
-ol {
-    list-style-type: decimal;
-    padding: 0 0 0 30px;
+ol, ul {
+    list-style-type: decimal !important;
+    padding: 0 0 0 30px !important;
+}
+
+li {
+    margin-bottom: 10px !important;
 }
