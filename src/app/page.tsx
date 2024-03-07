@@ -84,7 +84,10 @@ export default function Home() {
   const start = () => SpeechRecognition.startListening({ continuous: true });
   const stop = () => SpeechRecognition.stopListening();
   const reset_transcript = () => resetTranscript();
-  const reset = () => setQuestion("");
+  const reset = () => {
+    setQuestion("");
+    resetTranscript();
+  };
 
   const search = async () => {
     if (!question) {
